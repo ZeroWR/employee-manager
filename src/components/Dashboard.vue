@@ -1,16 +1,17 @@
 <template>
   <main>
     <div id="dashboard">
-        <ul class="collection with-header">
-            <li class="collection-header"><h4>Employees</h4></li>
-            <li v-for="employee in employees" v-bind:key="employee.id" class="collection-item">
-                <div class="chip green lighten-2" style="color: white;">{{employee.dept}}</div>{{employee.employee_id}}:{{employee.name}}
-                <router-link class="secondary-content" v-bind:to="{name: 'view-employee', params: {employee_id: employee.employee_id}}">
-                    <i class="fa fa-eye" style="color: #9e9e9e !important;font-size: 2rem;"></i>
-                </router-link>
-            </li>
-        </ul>
-
+        <div class="container">
+            <ul class="collection with-header">
+                <li class="collection-header"><h4>Employees</h4></li>
+                <li v-for="employee in employees" v-bind:key="employee.id" class="collection-item">
+                    <div class="chip green lighten-2" style="color: white;">{{employee.dept}}</div>{{employee.employee_id}}:{{employee.name}}
+                    <router-link class="secondary-content" v-bind:to="{name: 'view-employee', params: {employee_id: employee.employee_id}}">
+                        <i class="fa fa-eye" style="color: #9e9e9e !important;font-size: 2rem;"></i>
+                    </router-link>
+                </li>
+            </ul>
+        </div>
         <div class="fixed-action-btn">
             <router-link to="/new" class="btn-floating waves-effect btn-large green lighten-2">
                 <i class="fa fa-plus"></i>
@@ -47,3 +48,8 @@
     }
 </script>
 
+<style scoped>
+    ul {
+        margin-top: 17px;
+    }
+</style>

@@ -4,9 +4,9 @@
       <Navbar />
     </header>
     <main>
-      <div class="container">
+      <!-- <div class="container"> -->
         <router-view/>
-      </div>
+      <!-- </div> -->
     </main>
     <footer>
       <mat-footer />
@@ -17,6 +17,8 @@
 <script>
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import swal from 'sweetalert'
+
 export default {
   name: 'app',
   components: {
@@ -27,9 +29,6 @@ export default {
 </script>
 
 <style>
-  nav {
-    margin-bottom: 10px;
-  }
     #app {
     display: flex;
     min-height: 100vh;
