@@ -8,19 +8,16 @@ import Landing from '@/components/Landing'
 import Login from '@/components/Login'
 import AccountPage from '@/components/AccountPage'
 import SignUp from '@/components/SignUp'
+import firebase from 'firebase'
 
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
   routes: [
-    // {
-    //   path: '*',
-    //   redirect: '/login'
-    // },
-    // {
-    //   path: '/',
-    //   redirect: '/login',
-    // },
+    {
+      path: '*',
+      redirect: '/'
+    },
     {
       path: '/',
       name: 'landing',
@@ -41,7 +38,7 @@ export default new Router({
       name: 'account-page',
       component: AccountPage,
       meta: {
-        // requiresAuth: true
+       requiresAuth: true
       }
     },
     {
@@ -49,7 +46,7 @@ export default new Router({
       name: 'dashboard',
       component: Dashboard,
       meta: {
-        // requiresAuth: true
+        requiresAuth: true
       }
     },
     {
@@ -57,7 +54,7 @@ export default new Router({
       name: 'new-employee',
       component: NewEmployee,
       meta: {
-        // requiresAuth: true
+        requiresAuth: true
       }
     },
     {
@@ -65,7 +62,7 @@ export default new Router({
       name: 'edit-employee',
       component: EditEmployee,
       meta: {
-        // requiresAuth: true
+        requiresAuth: true
       }
     },
     {
@@ -73,17 +70,19 @@ export default new Router({
       name: 'view-employee',
       component: ViewEmployee,
       meta: {
-        // requiresAuth: true
+        requiresAuth: true
       }
     },
   ]
 })
 
-// router.beforeEach((to, from, next) => {
-//   let currentUser = firebase.auth().currentUser;
-//   let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+router.beforeEach((to, from, next) => {
+  let currentUser = firebase.auth().currentUser;
+  let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
-//   if (requiresAuth && !currentUser) next('login')
-//   else if (!requiresAuth && currentUser) next('landing')
-//   else next()
-// })
+  if (requiresAuth && !currentUser) next('landing')
+  else if (!requiresAuth && currentUser) next('landing')
+  else next()
+})
+
+export default router
