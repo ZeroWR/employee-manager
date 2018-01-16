@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import Dashboard from '@/components/Dashboard'
 import NewEmployee from '@/components/NewEmployee'
 import ViewEmployee from '@/components/ViewEmployee'
@@ -14,24 +15,37 @@ Vue.use(Router)
 
 let router = new Router({
   routes: [
-    {
-      path: '*',
-      redirect: '/'
-    },
+    // {
+    //   path: '*',
+    //   redirect: '/login'
+    // },
+    // {
+    //   path: '/',
+    //   redirect: '/login'
+    // },
     {
       path: '/',
       name: 'landing',
-      component: Landing
+      component: Landing,
+      meta: {
+        requiresAuth: false
+       }
     },
     {
       path: '/login',
       name: 'login',
-      component: Login
+      component: Login,
+      meta: {
+        requiresAuth: false
+       }
     },
     {
       path: '/signup',
       name: 'signup',
-      component: SignUp
+      component: SignUp,
+      meta: {
+        requiresAuth: false
+      }
     },
     {
       path: '/acct',
@@ -80,8 +94,8 @@ router.beforeEach((to, from, next) => {
   let currentUser = firebase.auth().currentUser;
   let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
-  if (requiresAuth && !currentUser) next('landing')
-  else if (!requiresAuth && currentUser) next('landing')
+  if (requiresAuth && !currentUser) next('login')
+  else if (!requiresAuth && currentUser) next('dash')
   else next()
 })
 

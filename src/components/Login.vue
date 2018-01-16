@@ -44,8 +44,8 @@
             signIn: function() {
                 firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
                     (user) => {
+                        this.$router.replace('acct')
                         swal('You have logged in')
-                        this.$router.replace('landing')
                     },
                     (err) => {
                         swal('Oops. ' + err.message)

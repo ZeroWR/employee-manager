@@ -34,6 +34,7 @@
         name: 'signup',
         data: function() {
             return {
+                name: '',
                 email: '',
                 password: ''
             }
@@ -43,7 +44,7 @@
                 firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
                     (user) => {
                         swal('Your account has been created!')
-                        this.$router.replace('/')
+                        this.$router.replace('acct')
                     },
                     (err) => {
                         swal('Oops. ' + err.message)

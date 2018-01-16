@@ -3,9 +3,11 @@
     <div id="dashboard">
         <div class="container">
             <ul class="collection with-header">
-                <li class="collection-header"><h4>Employees</h4></li>
+                <li class="collection-header"><h2>Employees</h2></li>
                 <li v-for="employee in employees" v-bind:key="employee.id" class="collection-item">
-                    <div class="chip green lighten-2" style="color: white;">{{employee.dept}}</div>{{employee.employee_id}}:{{employee.name}}
+                    <div><h5>{{employee.dept}}</h5></div>
+                    <br>
+                    <p>{{employee.employee_id}}: {{employee.name}}</p>
                     <router-link class="secondary-content" v-bind:to="{name: 'view-employee', params: {employee_id: employee.employee_id}}">
                         <i class="fa fa-eye" style="color: #9e9e9e !important;font-size: 2rem;"></i>
                     </router-link>
@@ -50,6 +52,14 @@
 
 <style scoped>
     ul {
-        margin-top: 17px;
+        margin: 4rem 0;
+    }
+
+    p {
+        display: inline;
+    }
+
+    .chip {
+        display: block;
     }
 </style>

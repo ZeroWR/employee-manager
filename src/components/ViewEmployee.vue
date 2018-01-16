@@ -1,17 +1,19 @@
 <template>
   <div id="view-employee">
-      <ul class="collection with-header">
-          <li class="collection-header"><h4>{{name}}</h4></li>
-          <li class="collection-item">Employee ID#: {{employee_id}}</li>
-          <li class="collection-item">Department: {{dept}}</li>
-          <li class="collection-item">Position: {{position}}</li>
-      </ul>
-      <router-link to="/" class="btn green lighter-2">Back</router-link>
-      <button @click="deleteEmployee" class="btn red">Delete</button>
-      <div class="fixed-action-btn">
-          <router-link v-bind:to="{name: 'edit-employee', params: {employee_id: employee_id}}" class="btn-floating btn-large green lighten-2">
-            <i class="fa fa-pencil"></i>
-          </router-link>
+      <div class="container">
+        <ul class="collection with-header">
+            <li class="collection-header"><h4>{{name}}</h4></li>
+            <li class="collection-item">Employee ID#: {{employee_id}}</li>
+            <li class="collection-item">Department: {{dept}}</li>
+            <li class="collection-item">Position: {{position}}</li>
+        </ul>
+        <router-link to="/" class="btn green lighter-2">Back</router-link>
+        <button @click="deleteEmployee" class="btn red">Delete</button>
+        <div class="fixed-action-btn">
+            <router-link v-bind:to="{name: 'edit-employee', params: {employee_id: employee_id}}" class="btn-floating btn-large green lighten-2">
+                <i class="fa fa-pencil"></i>
+            </router-link>
+        </div>
       </div>
   </div>
 </template>

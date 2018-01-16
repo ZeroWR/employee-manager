@@ -2,8 +2,8 @@
     <div>
         <div class="landing-img">
             <div class="center-align">
-                <h1 >Testing the Overlay Header</h1>
-                <h5>Here is some information about the website to get you started.</h5>
+                <h1>Welcome to the Employee Manager</h1>
+                <h5>Log in below or create an account to get started</h5>
                 <router-link to="/login" class="btn red">Log In</router-link>
                 <router-link to="/signup" class="btn red">Sign Up</router-link>
             </div>
@@ -41,5 +41,17 @@
     .btn {
         margin-right: 1rem;
         margin-left: 1rem;
+    }
+
+    @media (min-width: 1200px) {
+        h1 {
+            padding-top: 20%;
+        }
+    }
+
+    @media (max-width: 576px) {
+        h1 {
+            padding-top: 50%;
+        }
     }
 </style>
