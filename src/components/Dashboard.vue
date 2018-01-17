@@ -3,7 +3,7 @@
     <div id="dashboard">
         <div class="container">
             <ul class="collection with-header">
-                <li class="collection-header"><h2>Employees</h2></li>
+                <li class="collection-header"><h2>Employee List</h2></li>
                 <li v-for="employee in employees" v-bind:key="employee.id" class="collection-item">
                     <div><h5>{{employee.dept}}</h5></div>
                     <br>

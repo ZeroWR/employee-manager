@@ -57,9 +57,9 @@
                 })
             })
         },
-        watch: {
-            '$route': 'fetchData'
-        },
+        // watch: {
+        //     '$route': 'fetchData'
+        // },
         methods: {
             fetchData () {
                 db.collection('Employee').where('employee_id', '==', this.$route.params.employee_id).get()

@@ -15,21 +15,13 @@ Vue.use(Router)
 
 let router = new Router({
   routes: [
-    // {
-    //   path: '*',
-    //   redirect: '/login'
-    // },
-    // {
-    //   path: '/',
-    //   redirect: '/login'
-    // },
     {
       path: '/',
       name: 'landing',
       component: Landing,
       meta: {
         requiresAuth: false
-       }
+      }
     },
     {
       path: '/login',
@@ -37,7 +29,7 @@ let router = new Router({
       component: Login,
       meta: {
         requiresAuth: false
-       }
+      }
     },
     {
       path: '/signup',
@@ -89,6 +81,7 @@ let router = new Router({
     },
   ]
 })
+
 
 router.beforeEach((to, from, next) => {
   let currentUser = firebase.auth().currentUser;

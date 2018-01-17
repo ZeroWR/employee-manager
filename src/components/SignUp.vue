@@ -30,6 +30,7 @@
 
 <script>
     import firebase from 'firebase'   
+    import firebaseui from 'firebaseui'
     export default {
         name: 'signup',
         data: function() {
@@ -51,7 +52,7 @@
                     }
                 )
             }
-        }
+        },
     }
 </script>
 
