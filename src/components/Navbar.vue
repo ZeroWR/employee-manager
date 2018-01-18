@@ -8,20 +8,20 @@
           </router-link>
           <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-bars" style="font-size: 2rem;"></i></a>
           <ul class="right hide-on-med-and-down">
-            <li><router-link to="/login">Log In</router-link></li>
-            <li><router-link to="/acct">My Account</router-link></li>
-            <li><router-link to="/dash">Dashboard</router-link></li>
-            <li><router-link to="/signup">Sign Up</router-link></li>
+            <li><router-link v-if="!isAuth" to="/login">Log In</router-link></li>
+            <li><router-link v-if="isAuth" to="/acct">My Account</router-link></li>
+            <li><router-link v-if="isAuth" to="/dash">Dashboard</router-link></li>
+            <li><router-link v-if="!isAuth" to="/signup">Sign Up</router-link></li>
             <li class="center-align"><button v-on:click="logout" class="btn red">Sign Out</button></li>
           </ul>
           <ul class="side-nav" id="mobile-nav">
-            <li><router-link to="/" ><h3 class="center-align">Header</h3></router-link> </li>
-            <li><router-link to="/login">Log In</router-link></li>
-            <li><router-link to="/acct">My Account</router-link></li>
+            <li><router-link to="/" ><h3 class="center-align">Navigation</h3></router-link> </li>
+            <li><router-link v-if="!isAuth" to="/login">Log In</router-link></li>
+            <li><router-link v-if="isAuth" to="/acct">My Account</router-link></li>
             <hr/>
-            <li><router-link to="/dash">Dashboard</router-link></li>
-            <li><router-link to="/signup">Sign Up</router-link></li>
-            <li class="center-align"><button v-on:click="logout" class="btn red">Sign Out</button></li>
+            <li><router-link v-if="isAuth" to="/dash">Dashboard</router-link></li>
+            <li><router-link v-if="!isAuth" to="/signup">Sign Up</router-link></li>
+            <li v-if="isAuth" class="center-align"><button v-on:click="logout" class="btn red">Sign Out</button></li>
           </ul>
         </div>
       </div>
@@ -36,7 +36,7 @@
     name: 'hello',
     data() {
       return {
-
+        isAuth: false,
       }
     },
     methods: {
@@ -46,7 +46,13 @@
           this.$router.replace('login')
         })
       }
-    }
+    },
+    created() {
+      this.user = firebase.auth().currentUser; 
+      if(this.user) {
+        this.isAuth = true
+      }
+    },
   }
 </script>
 

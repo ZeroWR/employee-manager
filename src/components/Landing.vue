@@ -1,19 +1,35 @@
 <template>
     <div>
+        <Navbar></Navbar>
         <div class="landing-img">
             <div class="center-align">
                 <h1>Welcome to the Employee Manager</h1>
                 <h5>Log in below or create an account to get started</h5>
-                <router-link to="/login" class="btn red">Log In</router-link>
-                <router-link to="/signup" class="btn red">Sign Up</router-link>
+                <router-link v-if="isAuth" to="/acct" class="btn red">Account</router-link>
+                <router-link v-if="isAuth" to="/dash" class="btn red">Dashboard</router-link>
+                <router-link v-if="!isAuth" to="/login" class="btn red">Log In</router-link>
+                <router-link v-if="!isAuth" to="/signup" class="btn red">Sign Up</router-link>
             </div>
         </div>
+        <mat-footer></mat-footer>
     </div>
 </template>
 
 <script>
+import db from './firebaseInit'
+import firebase from 'firebase'
     export default {
-        
+        data() {
+            return {
+                isAuth: false,
+            }
+        },
+        created() {
+            this.user = firebase.auth().currentUser; 
+            if(this.user) {
+                this.isAuth = true
+            }
+        },
     }
 </script>
 

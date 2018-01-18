@@ -13,7 +13,8 @@ import firebase from 'firebase'
 
 Vue.use(Router)
 
-let router = new Router({
+// let router = new Router({
+export default new Router({
   routes: [
     {
       path: '/',
@@ -83,13 +84,13 @@ let router = new Router({
 })
 
 
-router.beforeEach((to, from, next) => {
-  let currentUser = firebase.auth().currentUser;
-  let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+// router.beforeEach((to, from, next) => {
+//   let currentUser = firebase.auth().currentUser;
+//   let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
-  if (requiresAuth && !currentUser) next('login')
-  else if (!requiresAuth && currentUser) next('dash')
-  else next()
-})
+//   if (requiresAuth && !currentUser) next('login')
+//   else if (!requiresAuth && currentUser) next('dash')
+//   else next()
+// })
 
-export default router
+// export default router

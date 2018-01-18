@@ -56,7 +56,7 @@
                     dept: this.dept,
                     position: this.position
                 })
-                .then(docRef => this.$router.push('/'))
+                .then(docRef => this.$router.push('/dash'))
                 .catch(error => console.log(err))
             }
         }
