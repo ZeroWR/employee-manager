@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <button type="submit" class="btn">Submit</button>
-                <router-link to="/" class="btn green lighter-2">Cancel</router-link>
+                <router-link to="/dash" class="btn green lighter-2">Cancel</router-link>
             </form>
         </div>
       </div>

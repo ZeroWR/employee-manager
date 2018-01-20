@@ -1,17 +1,15 @@
 <template>
     <div>
-        <Navbar></Navbar>
         <div class="landing-img">
             <div class="center-align">
                 <h1>Welcome to the Employee Manager</h1>
                 <h5>Log in below or create an account to get started</h5>
-                <router-link v-if="isAuth" to="/acct" class="btn red">Account</router-link>
-                <router-link v-if="isAuth" to="/dash" class="btn red">Dashboard</router-link>
-                <router-link v-if="!isAuth" to="/login" class="btn red">Log In</router-link>
-                <router-link v-if="!isAuth" to="/signup" class="btn red">Sign Up</router-link>
+                <router-link v-show="isAuthenticated" to="/acct" class="btn red">Account</router-link>
+                <router-link v-show="isAuthenticated" to="/dash" class="btn red">Dashboard</router-link>
+                <router-link v-show="!isAuthenticated" to="/login" class="btn red">Log In</router-link>
+                <router-link v-show="!isAuthenticated" to="/signup" class="btn red">Sign Up</router-link>
             </div>
         </div>
-        <mat-footer></mat-footer>
     </div>
 </template>
 
@@ -21,15 +19,31 @@ import firebase from 'firebase'
     export default {
         data() {
             return {
-                isAuth: false,
+                user: null
             }
         },
-        created() {
-            this.user = firebase.auth().currentUser; 
-            if(this.user) {
-                this.isAuth = true
+        computed: {
+            isAuthenticated: function () {
+                firebase.auth().onAuthStateChanged(function(user) {
+                    if (user) {
+                        this.user = user
+                    } else {
+                        this.user = null
+                    }
+                }.bind(this))
+                return (this.user !== null)
             }
-        },
+        }
+
+        // created() {
+        //     firebase.auth().onAuthStateChanged(function(user) {
+        //         if (user) {
+        //             console.log('logged in')
+        //         } else {
+        //             console.log('logged out')
+        //         }
+        //     })
+        // }
     }
 </script>
 

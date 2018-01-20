@@ -58,7 +58,7 @@
         },
         mounted() {
             var uiConfig = {
-                signInSuccessUrl: '/#/acct',
+                signInSuccessUrl: '/acct',
                 signInOptions: [
                     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
                 ]
