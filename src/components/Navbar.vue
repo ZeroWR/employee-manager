@@ -8,20 +8,19 @@
           </router-link>
           <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="fa fa-bars" style="font-size: 2rem;"></i></a>
           <ul class="right hide-on-med-and-down">
-            <li><router-link to="/login">Log In</router-link></li>
-            <li><router-link to="/acct">My Account</router-link></li>
-            <li><router-link to="/dash">Dashboard</router-link></li>
-            <li><router-link to="/signup">Sign Up</router-link></li>
-            <li class="center-align"><button v-on:click="logout" class="btn red">Sign Out</button></li>
+            <li v-show="!isAuthenticated"><router-link to="/login">Log In</router-link></li>
+            <li v-show="isAuthenticated"><router-link to="/acct">My Account</router-link></li>
+            <li v-show="isAuthenticated"><router-link to="/dash">Dashboard</router-link></li>
+            <li v-show="!isAuthenticated"><router-link to="/signup">Sign Up</router-link></li>
+            <li v-show="isAuthenticated" class="center-align"><button v-on:click="logout" class="btn red">Sign Out</button></li>
           </ul>
           <ul class="side-nav" id="mobile-nav">
-            <li><router-link to="/" ><h3 class="center-align">Navigation</h3></router-link> </li>
-            <li><router-link to="/login">Log In</router-link></li>
-            <li><router-link to="/acct">My Account</router-link></li>
-            <hr/>
-            <li><router-link to="/dash">Dashboard</router-link></li>
-            <li><router-link to="/signup">Sign Up</router-link></li>
-            <li class="center-align"><button v-on:click="logout" class="btn red">Sign Out</button></li>
+            <li class="header-text"><router-link to="/" ><h3 class="center-align white-text">Navigation</h3></router-link> </li>
+            <li v-show="!isAuthenticated"><router-link to="/login">Log In</router-link></li>
+            <li v-show="isAuthenticated"><router-link to="/acct">My Account</router-link></li>
+            <li v-show="isAuthenticated"><router-link to="/dash">Dashboard</router-link></li>
+            <li v-show="!isAuthenticated"><router-link to="/signup">Sign Up</router-link></li>
+            <li v-show="isAuthenticated" class="center-align"><button v-on:click="logout" class="btn red">Sign Out</button></li>
           </ul>
         </div>
       </div>
@@ -37,6 +36,7 @@
     data() {
       return {
         isAuth: false,
+        user: null
       }
     },
     methods: {
@@ -53,6 +53,18 @@
         }
       }
     },
+    computed:  {
+            isAuthenticated: function () {
+                firebase.auth().onAuthStateChanged(function(user) {
+                    if (user) {
+                        this.user = user
+                    } else {
+                        this.user = null
+                    }
+                }.bind(this))
+                return (this.user !== null)
+            }
+        }
     // created() {
     //   this.user = firebase.auth().onAuthStateChanged; 
     //   if(this.user) {
@@ -63,6 +75,11 @@
 </script>
 
 <style scoped>
+  .header-text {
+    background-color: #00acc1;
+    padding: 5px 0;
+  }
+
   @media (max-width: 575.99px) {
     .brand-logo {
       font-size: 1.2rem;

@@ -2,8 +2,9 @@
     <div>
         <div class="landing-img">
             <div class="center-align">
-                <h1>Welcome to the Employee Manager</h1>
-                <h5>Log in below or create an account to get started</h5>
+                <h1>Employee Manager</h1>
+                <h5 v-show="!isAuthenticated">Log in below or create an account to get started</h5>
+                <h5 v-show="isAuthenticated">Welcome Back! Select an option below to begin</h5>
                 <router-link v-show="isAuthenticated" to="/acct" class="btn red">Account</router-link>
                 <router-link v-show="isAuthenticated" to="/dash" class="btn red">Dashboard</router-link>
                 <router-link v-show="!isAuthenticated" to="/login" class="btn red">Log In</router-link>
@@ -34,16 +35,6 @@ import firebase from 'firebase'
                 return (this.user !== null)
             }
         }
-
-        // created() {
-        //     firebase.auth().onAuthStateChanged(function(user) {
-        //         if (user) {
-        //             console.log('logged in')
-        //         } else {
-        //             console.log('logged out')
-        //         }
-        //     })
-        // }
     }
 </script>
 
