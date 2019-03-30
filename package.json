@@ -10,6 +10,7 @@
     "build": "node build/build.js",
     "deploy": "gh-pages -d dist"
   },
+  "wst": "/dist/",
   "homepage": "https://zerowr.github.io/employee-manager",
   "dependencies": {
     "firebase": "^4.8.2",
